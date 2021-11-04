@@ -3,6 +3,6 @@ const { setupInput } = require("./input");
 //console.log(connect);
 console.log("Connecting ...");
 
-connect();
+const conn = connect();
 
-setupInput(); //call after calling connect??
+setupInput(conn); //call after calling connect??

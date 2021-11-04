@@ -1,8 +1,12 @@
-
-const setupInput = function () {
-  const stdin = process.stdin;
+let connection;
+const stdin = process.stdin;
   stdin.setRawMode(true);
   stdin.setEncoding("utf8");
+  
+
+const setupInput = (conn) => {
+  connection = conn;
+  console.log(conn);
   stdin.resume();
 
   //add event listeners before returning stdin
@@ -12,11 +16,25 @@ const setupInput = function () {
 };
 
 
-const handleUserInput = function (key) {
+const handleUserInput = (key) => {
   // your code here
   console.log(key);
   if (key === '\u0003') {
     process.exit();
+  }
+  if(key === 'w') {
+    //process.stdout.write('w');
+    connection.write('Move: up');
+    //setInterval(() => {connection.write('Move: up')}, 1000);
+  }
+  if(key === 'a') {
+    connection.write('Move: left');
+  }
+  if(key === 's') {
+    connection.write('Move: down');
+  }
+  if(key === 'd') {
+    connection.write('Move: right');
   }
 
 };
